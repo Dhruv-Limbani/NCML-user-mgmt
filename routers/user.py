@@ -1,5 +1,5 @@
 # fastapi
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm
 
@@ -115,8 +115,6 @@ async def update_user(new: User, user: User = Depends(get_current_user)):
 
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
-
-from fastapi import Depends, HTTPException, status
 
 @user_router.delete("/", tags=["user"],
     responses={
